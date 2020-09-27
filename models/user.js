@@ -37,7 +37,20 @@ module.exports = function(sequelize, DataTypes) {
         try {
             return await bcrypt.compare(password, this.password);
         } catch (error) {
+            //throws this error if bcrypt had trouble comparing passwords
             console.log("Unable to compare passwords: ", error);
         }
     };
+
+    //our hook that will be run the hash the user's new password before it's saved in the database
+    User.addHook("beforeCreate", async function(user) {
+        try {
+            //calls bcrypt to hash the password
+            user.password = await bcrypt.hash(user.password, 10)
+        } catch (error) {
+            //throws this error if bcrypt could not hash the password for the new user
+            console.log("Could not hash this user's password: ", error);
+        };
+    });
+    return User;
 }
