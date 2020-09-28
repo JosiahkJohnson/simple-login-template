@@ -16,7 +16,7 @@ const session = require("express-session");
 const users = [];
 
 //from other files
-const initializePassport = require("./passport-config");
+const initializePassport = require("./config/passport-config");
 initializePassport(passport,
     email => users.find(user => user.email === email),
     id => users.find(user => user.id === id)

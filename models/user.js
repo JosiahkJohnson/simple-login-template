@@ -32,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
 
     //here are the custom functions to store as a user in our database, most important is the valid password checker
     //valid password checker
-    User.prototype.validPassword =async function(password) {
+    User.prototype.validPassword = async function(password) {
         //error catching
         try {
             return await bcrypt.compare(password, this.password);

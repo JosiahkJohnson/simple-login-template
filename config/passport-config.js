@@ -2,6 +2,9 @@
 const LocalStratagey = require("passport-local").Strategy;
 const brcypt = require("bcrypt");
 
+//load in our database
+const db = require("../models");
+
 //our main function we are going to export to be used in our server
 //needs some construction though before it will work
 function initialize(passport, getUserByEmail, getUserById) {
